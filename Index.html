@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequência Musical Blockly</title>
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* Elementos visuais animados */
+    .nota-animada {
+      position: absolute;
+      font-size: 2rem;
+      color: #ffa500;
+      animation: flutuar 6s infinite ease-in;
+    }
+    @keyframes flutuar {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-600px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-container">
+    <div class="logo-container">
+      <span class="site-name">CodeKids</span>
+    </div>
+  </nav>
+
+
+  <main class="main-wrapper">
+    <section class="game-section">
+      <div class="game-area">
+        <h1 class="game-title">Monte sua Melodia!</h1>
+        <div id="alvo" class="alvo-container"></div>
+        <div id="blocklyDiv"></div>
+
+        <xml id="toolbox" style="display: none">
+          <block type="nota_simples"></block>
+          <block type="nota_dupla"></block>
+          <block type="nota_solta"></block>
+          <block type="clave_fa"></block>
+          <block type="semínima"></block>
+          <block type="bemol"></block>
+          <block type="repeat_times"></block>
+        </xml>
+        
+
+        <div class="btn_container">
+          <button class="buttons" id="play" onclick="executar()">▶ Tocar</button>
+          <button class="buttons" id="reset" onclick="resetPosition()">🔄 Reiniciar</button>
+        </div>
+      </div>
+
+      <aside class="info-panel">
+        <div id="pontuacao">
+          🎯 Pontuação: <span id="pontos">0</span> | Fase: <span id="fase">1</span>
+        </div>
+
+        <div class="resultado-box">
+          <p class="label">🎵 Resultado:</p>
+          <span id="saidaNotas" class="saida-notas"></span>
+          <p id="resposta" class="mensagem-final"></p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <p id="sequenciaNotas"></p>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="modalMensagem"></p>
+      <button id="btnFechar">Fechar</button>
+      <button id="btnProximaFase" class="hidden">Próxima Fase</button>
+    </div>
+  </div>
+
+  <audio id="audio_♫" src="nota1.mp3"></audio>
+  <audio id="audio_♪" src="nota2.mp3"></audio>
+  <audio id="audio_♬" src="nota3.mp3"></audio>
+  <audio id="audio_♩" src="nota4.mp3"></audio>
+
+
+  <!-- Notas musicais flutuantes -->
+  <div class="nota-animada" style="left:10%">🎵</div>
+  <div class="nota-animada" style="left:30%; animation-delay: 1s">🎶</div>
+  <div class="nota-animada" style="left:50%; animation-delay: 2s">♩</div>
+  <div class="nota-animada" style="left:70%; animation-delay: 3s">♪</div>
+  <div class="nota-animada" style="left:90%; animation-delay: 4s">♬</div>
+
+  <footer class="footer">
+    <div class="footer-logos">
+      <img src="imagens/ufuLogo.png" alt="UFU" class="footer-logo" />
+      <img src="imagens/facomLogo.png" alt="Faculdade de Computação" class="footer-logo" id="logoMaior" />
+      <img src="imagens/includeLogo.png" alt="Include Girls" class="footer-logo" id="logoMaior" />
+    </div>
+    <p class="footer-text">© 2025 Include Girls - Projeto desenvolvido na UFU | FACOM</p>
+  </footer>
+
+  <script src="gameFunctions.js"></script>
+  <script src="blocklyFunctions.js"></script>
+</body>
+</html>
